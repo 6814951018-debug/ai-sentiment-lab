@@ -19,7 +19,12 @@ jobs:
       with:
         python-version: '3.10'
 
-    - name: Verify Python Environment
+    - name: Install Basic Requirements
       run: |
-        python --version
+        python -m pip install --upgrade pip
+        pip install streamlit textblob nltk
+        python -m nltk.downloader nltk_data Corpora/movie_reviews Punkt
+
+    - name: Verify Code Syntax
+      run: |
         python -m py_compile app.py
